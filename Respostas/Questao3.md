@@ -18,7 +18,7 @@ A comunicação é assíncrona e indireta. O fluxo é:
 - O serviço entrega a mensagem via email, SMS ou push, conforme preferência do usuário.
 
 #### 1.1 Diagrama
-![Diagrama de componentes](imagens/Diagrama3.png "Diagrama de componentes")
+![Diagrama do Sistema](../imagens/Diagrama3.png)
 
 ---
 
