@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "grpc.calculadora";
+option java_outer_classname = "CalculadoraProto";
+
+service ServicoCalculadora {
+    rpc Somar (RequisicaoOperacao) returns (RespostaOperacao);
+    rpc Subtrair (RequisicaoOperacao) returns (RespostaOperacao);
+    rpc Multiplicar (RequisicaoOperacao) returns (RespostaOperacao);
+    rpc Dividir (RequisicaoOperacao) returns (RespostaOperacao);
+}
+
+message RequisicaoOperacao {
+    double a = 1;
+    double b = 2;
+}
+
+message RespostaOperacao {
+    double resultado = 1;
+}
