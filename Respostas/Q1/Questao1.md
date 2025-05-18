@@ -8,26 +8,7 @@
 Um sistema de streaming baseado em microsserviços divide as funcionalidades em serviços independentes, cada um com sua própria responsabilidade. Vamos usar tecnologias mais acessíveis:
 
 ```
-┌───────────────────────────────────────────────────────────────────────┐
-│                          PLATAFORMA DE STREAMING                      │
-│                                                                       │
-│  ┌─────────────┐      ┌─────────────┐      ┌─────────────────────┐    │
-│  │  Frontend   │─────▶│  API Gateway │─────▶│   Microsserviços    │    │
-│  │ (Web/App)   │◀─────│  (Nginx)     │◀─────│   (Catálogo, Player,│    │
-│  └─────────────┘      └─────────────┘      │    Usuários, etc.)   │    │
-│         ▲                                   └──────────┬──────────┘    │
-│         │                                              │               │
-│         │                                      ┌───────▼───────┐       │
-│         │                                      │  Banco de     │       │
-│         │                                      │  Dados        │       │
-│         │                                      │ (MySQL, Redis)│       │
-│         │                                      └───────┬───────┘       │
-│         │                                              │               │
-│  ┌──────┴───────┐                              ┌───────▼───────┐       │
-│  │  CDN         │                              │  Armazenamento│       │
-│  │ (Cloudflare) │◀─────────────────────────────│  (Amazon S3) │       │
-│  └──────────────┘                              └───────────────┘       │
-└───────────────────────────────────────────────────────────────────────┘
+
 ```
 
 ### **Fluxo de Funcionamento:**
@@ -286,20 +267,7 @@ Resposta:
 #### Fluxo de Requisições
 
 ```
-┌─────────────┐    ┌───────────────────────┐    ┌─────────────┐
-│   Cliente   │───▶│   Servidor            │───▶│   Banco de  │
-│             │◀───│   Monolítico          │◀───│   Dados     │
-└─────────────┘    │                       │    └─────────────┘
-                   │  ┌─────────────────┐  │
-                   │  │   Lógica de     │  │
-                   │  │   Negócio       │  │
-                   │  └─────────────────┘  │
-                   │                       │
-                   │  ┌─────────────────┐  │    ┌─────────────┐
-                   │  │   Sistema de    │───┼──▶│   Armazena- │
-                   │  │   Arquivos      │◀──┼───│   mento     │
-                   │  └─────────────────┘  │    └─────────────┘
-                   └───────────────────────┘
+
 ```
 
 ### Vantagens da Abordagem Tradicional
