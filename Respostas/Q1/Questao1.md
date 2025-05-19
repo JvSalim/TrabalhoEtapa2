@@ -1,6 +1,7 @@
 # Questão 1
 
 # **Abordagem de Microsserviços para Streaming de Vídeo**
+
 ---
 
 ## **1. Arquitetura Geral**
@@ -12,6 +13,7 @@ Um sistema de streaming baseado em microsserviços divide as funcionalidades em 
 ```
 
 ### **Fluxo de Funcionamento:**
+
 1. O usuário acessa o **frontend** (site ou app).
 2. O frontend se comunica com o **API Gateway** (Nginx), que roteia as requisições para os microsserviços corretos.
 3. Cada microsserviço executa sua função (ex.: buscar catálogo, autenticar usuário).
@@ -25,18 +27,22 @@ Um sistema de streaming baseado em microsserviços divide as funcionalidades em 
 ## **2. Microsserviços Principais (Explicação Detalhada)**
 
 ### **1. Serviço de Catálogo**
+
 **Responsabilidade**: Gerenciar informações sobre filmes, séries e documentários.  
 **Tecnologias**:
+
 - **Backend**: Node.js (Express) ou Python (Flask)  
 - **Banco de Dados**: MySQL (para dados estruturados)  
 - **Cache**: Redis (para acelerar buscas frequentes)  
 
 **Funcionalidades**:
+
 - Listar filmes/séries por categoria (ação, comédia, etc.).
 - Buscar informações detalhadas (elenco, diretor, duração).
 - Gerenciar temporadas e episódios.
 
 **Exemplo de Chamada API**:
+
 ```http
 GET /api/catalog?genre=action
 Resposta:
@@ -55,18 +61,22 @@ Resposta:
 ---
 
 ### **2. Serviço de Usuários**
+
 **Responsabilidade**: Gerenciar cadastro, login e perfis.  
 **Tecnologias**:
+
 - **Backend**: PHP (Laravel) ou Java (Spring Boot)  
 - **Banco de Dados**: PostgreSQL (mais robusto para dados de usuários)  
 - **Autenticação**: JWT (tokens seguros)  
 
 **Funcionalidades**:
+
 - Cadastro/login (email/senha ou Google/Facebook).
 - Gerenciamento de perfis (criança, adulto).
 - Histórico de assistidos.
 
 **Exemplo de Chamada API**:
+
 ```http
 POST /api/login
 Body: { "email": "user@example.com", "password": "123456" }
@@ -80,18 +90,22 @@ Resposta:
 ---
 
 ### **3. Serviço de Player**
+
 **Responsabilidade**: Reproduzir vídeos de forma eficiente.  
 **Tecnologias**:
+
 - **Frontend**: HTML5 + Video.js (biblioteca JavaScript para player)  
 - **Protocolo de Streaming**: HLS (HTTP Live Streaming)  
 - **CDN**: Cloudflare (para entrega rápida)  
 
 **Funcionalidades**:
+
 - Suporte a múltiplas qualidades (480p, 1080p, 4K).
 - Legendas (opcionais).
 - Controles de play/pause/volume.
 
 **Exemplo de Implementação**:
+
 ```html
 <video controls>
   <source src="https://cdn.streaming.com/movie_1080p.m3u8" type="application/x-mpegURL">
@@ -102,17 +116,21 @@ Resposta:
 ---
 
 ### **4. Serviço de Recomendações**
+
 **Responsabilidade**: Sugerir vídeos baseados no histórico.  
 **Tecnologias**:
+
 - **Backend**: Python (Flask)  
 - **Banco de Dados**: MongoDB (para armazenar preferências)  
 - **Algoritmo**: Filtro colaborativo simples ("quem viu X também viu Y")  
 
 **Funcionalidades**:
+
 - Recomendar filmes similares.
 - Listas personalizadas ("Baseado no que você assistiu").
 
 **Exemplo de Chamada API**:
+
 ```http
 GET /api/recommendations?user_id=1
 Resposta:
@@ -123,21 +141,26 @@ Resposta:
   ]
 }
 ```
+
 ---
 
 ### **5. Serviço de Autenticação e Autorização**
+
 **Responsabilidade:** Garantir acesso seguro e gerenciamento de permissões.
 **Tecnologias:**
+
 - Autenticação: OAuth 2.0, JWT
 - Autorização: OpenID Connect, Keycloak
 - Proteção de Conteúdo: DRM (Widevine, PlayReady, FairPlay)
 
 **Funcionalidades:**
+
 - Login com provedores sociais (Google, Facebook)
 - Controle de sessão por dispositiv
 - Permissões com base no plano (ex: “Premium” assiste em 4K)
 
 - Exemplo de Chamada API:
+
 ```http
 GET /api/user/permissions
 Headers: Authorization: Bearer {jwt_token}
@@ -149,22 +172,27 @@ Resposta:
 "permissions": ["watch_4k", "offline_download", "multi_device"]
 }
 ```
+
 ---
 
 ### **6. Serviço de Monitoramento e Analytics**
+
 **Responsabilidade:** Coletar dados operacionais e de comportamento do usuário.
 **Tecnologias:**
+
 - Coleta: Beats, Logstash
 - Análise: Elasticsearch
 - Visualização: Grafana, Kibana
 - Alertas: Prometheus + Alertmanager
 
 **Funcionalidades:**
+
 - Monitorar qualidade do streaming (buffering, bitrate)
 - Mapear comportamento do usuário (tempo assistido, abandono)
 - Geração de relatórios para decisão de negócio
 
 - Exemplo de Métricas Coletadas:
+
 ```http
 {
 "video_id": 103,
@@ -174,21 +202,26 @@ Resposta:
 "watch_time": "36m"
 }
 ```
+
 ---
 
 ### **7. Serviço de Pagamentos**
+
 **Responsabilidade:** Processar cobranças, gerenciar planos e promoções.
 **Tecnologias:**
+
 - Gateways: Stripe, PayPal
 - Banco de Dados: PostgreSQL
 - Segurança: PCI-DSS compliance, criptografia ponta-a-ponta
 
 **Funcionalidades:**
+
 - Assinatura mensal/anual com renovação automática
 - Aplicação de cupons promocionais
 - Emissão de nota fiscal
 
 - Exemplo de Chamada API:
+
 ```http
 POST /api/payment/subscribe
 Body:
@@ -200,6 +233,7 @@ Body:
 "coupon": "BEMVINDO20"
 }
 ```
+
 ```http
 Resposta:
 
@@ -209,6 +243,7 @@ Resposta:
 "discount": "20%"
 }
 ```
+
 ---
 
 ### Vantagens da Abordagem de Microsserviços
@@ -344,12 +379,14 @@ Resposta:
 ## Conclusão Técnica
 
 A abordagem de **microsserviços** é superior para plataformas de streaming de vídeo modernas que:
+
 - Esperam crescimento rápido e irregular
 - Necessitam de alta disponibilidade
 - Possuem componentes com requisitos técnicos distintos
 - Operam em ambientes cloud nativos
 
 A abordagem **cliente-servidor tradicional** pode ser adequada para:
+
 - Projetos com escopo limitado e previsível
 - Equipes pequenas com expertise consolidada
 - Ambientes com restrições regulatórias específicas
@@ -358,6 +395,7 @@ A abordagem **cliente-servidor tradicional** pode ser adequada para:
 Para uma plataforma como Netflix, Amazon Prime ou Disney+, a arquitetura de microsserviços é essencial para atender aos requisitos de escala global, disponibilidade contínua e rápida inovação. Já para um sistema interno corporativo com poucos usuários concorrentes, a abordagem tradicional pode oferecer melhor custo-benefício inicial.
 
 A escolha deve considerar:
+
 1. Tamanho e crescimento esperado da base de usuários
 2. Capacidade da equipe de operar sistemas distribuídos
 3. Orçamento para infraestrutura cloud
