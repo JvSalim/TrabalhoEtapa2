@@ -14,7 +14,7 @@ Um sistema de streaming baseado em microsserviços divide as funcionalidades em 
 
 ### **Fluxo de Funcionamento:**
 
-![Diagrama de Fluxo de Funcionamento](imagens/DiagramaQ1.png)
+![DiagramaQ1](https://github.com/user-attachments/assets/5bdcf095-eb04-4eb5-b501-e079391b7d7c)
 
 1. O usuário acessa o **frontend** (site ou app).
 2. O frontend se comunica com o **API Gateway** (Nginx), que roteia as requisições para os microsserviços corretos.
@@ -22,7 +22,7 @@ Um sistema de streaming baseado em microsserviços divide as funcionalidades em 
 4. Dados são armazenados em **bancos de dados** (MySQL para dados estruturados, Redis para cache).
 5. Os vídeos são armazenados no **Amazon S3** e entregues via **CDN** (Cloudflare) para melhor desempenho.
 
-![Diagrama de Fluxo das Requisições](imagens/Requisicoes.png)
+![RequisicoesQ1](https://github.com/user-attachments/assets/fcaf5715-23cc-423a-817e-fe1dcdf05b93)
 
 ---
 
