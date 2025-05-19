@@ -14,7 +14,7 @@ Um sistema de streaming baseado em microsserviços divide as funcionalidades em 
 
 ### **Fluxo de Funcionamento:**
 
-![Diagrama de Fluxo de Funcionamento](imagens/DiagramaQ1.png 'Fluxo de Funcionamento')
+![Diagrama de Fluxo de Funcionamento](imagens/DiagramaQ1.png 'Fluxo de Funcionamento') 
 
 1. O usuário acessa o **frontend** (site ou app).
 2. O frontend se comunica com o **API Gateway** (Nginx), que roteia as requisições para os microsserviços corretos.
